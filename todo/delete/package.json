@@ -1,0 +1,8 @@
+{
+  "name": "delete_todo",
+  "version": "1.0.0",
+  "description": "Delete todo",
+  "main": "app.js",
+  "author": "Shrujal Shah",
+  "license": "MIT"
+}

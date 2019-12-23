@@ -1,0 +1,8 @@
+{
+  "name": "get_todo",
+  "version": "1.0.0",
+  "description": "Get todo",
+  "main": "app.js",
+  "author": "Shrujal Shah",
+  "license": "MIT"
+}

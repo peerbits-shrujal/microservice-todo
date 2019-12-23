@@ -1,0 +1,8 @@
+{
+  "name": "update_todo",
+  "version": "1.0.0",
+  "description": "Update todo",
+  "main": "app.js",
+  "author": "Shrujal Shah",
+  "license": "MIT"
+}

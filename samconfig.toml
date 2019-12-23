@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "microservicetodo"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-lx4jvmdii2i7"
+s3_prefix = "microservicetodo"
+region = "ap-south-1"
+capabilities = "CAPABILITY_IAM"
+

@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  todomanager
+
+  SAM Template for todomanager
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  Todo:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  GetTodoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: todo/get/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref Todo
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Todo
+      Events:
+        GetTodo:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: get
+
+  PutTodoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: todo/put/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Todo
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Todo
+      Events:
+        PutTodo:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: put
+
+  DeleteTodoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: todo/delete/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Todo
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref Todo
+      Events:
+        DeleteTodo:
+          Type: Api
+          Properties:
+            Path: /todo/{id}
+            Method: delete
