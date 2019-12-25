@@ -26,20 +26,20 @@ Resources:
   GetTodoFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: todo/get/
-      Handler: app.lambdaHandler
-      Runtime: nodejs12.x
+      CodeUri: todo/get/ # Our code location
+      Handler: app.lambdaHandler # Our lambda handler
+      Runtime: nodejs12.x # Our node.js runtime
       Policies:
-        - DynamoDBReadPolicy:
-            TableName: !Ref Todo
+        - DynamoDBReadPolicy: # Required permission
+            TableName: !Ref Todo # Our todo table
       Environment:
         Variables:
           TABLE_NAME: !Ref Todo
       Events:
-        GetTodo:
+        GetTodo: # Our API Gateway
           Type: Api
           Properties:
-            Path: /todo/{id}
+            Path: /todo/{id} # Our API end-point
             Method: get
 
   PutTodoFunction:
